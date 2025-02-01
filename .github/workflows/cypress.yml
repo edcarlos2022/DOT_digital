@@ -18,6 +18,5 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
-
       - name: Executar testes Cypress
-        run: npx cypress run
+        run: npx cypress run --headless --spec 'cypress/e2e/**/*.cy.js'
