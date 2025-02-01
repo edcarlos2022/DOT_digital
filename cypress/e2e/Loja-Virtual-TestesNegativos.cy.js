@@ -10,8 +10,7 @@ describe('Validar testes NEGATIVOS', function () {
 
   it('adicionar quantidade (<1) e valor (<R$1,00) no  orçamento de cartoes do produto "Auto" e seguir para o carrinho', function () {
 
-    cy.get('#btn-selecionar-modalidade-avulso').click()
-    cy.get('#adicionar-produto-28 > .fas').click()
+    cy.selecionarProdutoAuto()
     cy.get('#produto-auto-quantidade').type('0')
     cy.get('span').invoke('text').should('match', /Qtd\. mínima: 1/)
     cy.get('#produto-auto-valor').type("0,99")
@@ -24,8 +23,7 @@ describe('Validar testes NEGATIVOS', function () {
 
   it('adicionar quantidade (>300) e credito (em branco) em orçamento de cartoes do produto "Auto" e seguir para o carrinho', function () {
 
-    cy.get('#btn-selecionar-modalidade-avulso').click()
-    cy.get('#adicionar-produto-28 > .fas').click()
+    cy.selecionarProdutoAuto()
     cy.get('#produto-auto-quantidade').type('301')
     cy.get('span').invoke('text').should('match', /Qtd\. máxima: 300/);
     cy.get('#produto-auto-valor').type("0")
@@ -37,8 +35,7 @@ describe('Validar testes NEGATIVOS', function () {
 
   it('Remover orçamento do produto  "Auto"', function () {
 
-    cy.get('#btn-selecionar-modalidade-avulso').click()
-    cy.get('#adicionar-produto-28 > .fas').click()
+    cy.selecionarProdutoAuto()
     cy.get('#produto-auto-quantidade').type('301')
     cy.get('span').invoke('text').should('match', /Qtd\. máxima: 300/)
     cy.get('#produto-auto-valor').type("0")
