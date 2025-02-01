@@ -43,7 +43,7 @@ describe('Validar que um produto pode ser adicionado, com sucesso, ao carrinho',
     cy.get('i[aria-hidden="true"].fa-plus').dblclick()
     cy.get('button.minus-button',{timeout:10000}).eq(3).should('be.enabled')
     cy.get('button.minus-button').eq(3).click()
-    cy.get('#produto-auto-quantidade').should('have.value', '2')// quebra1
+    cy.get('#produto-auto-quantidade').should('have.value', '1')
   })
 
   it('digitar um valor de credito (minimo) para o produto "Auto" e guardar no carrinho', function () {
@@ -55,7 +55,7 @@ describe('Validar que um produto pode ser adicionado, com sucesso, ao carrinho',
     cy.get('#produto-auto-valor').type("1,00")
 
     //validando valor total
-    cy.contains('p', /R\$\s?1,00/).invoke('text').should('match', /R\$\s?13,00/)//quebra 1
+    cy.contains('p', /R\$\s?1,00/).invoke('text').should('match', /R\$\s?1,00/)
     cy.get('strong').invoke('text').should('match', /R\$\s?1,00/);
 
     //seguindo com a compra no carrinho
@@ -79,7 +79,7 @@ describe('Validar que um produto pode ser adicionado, com sucesso, ao carrinho',
     //seguindo com a compra no carrinho
     cy.intercept('POST', 'https://bf97558cxz.bf.dynatrace.com/bf*').as('aguardaCarrinho')
     cy.get('#carrinho-seguir-para-a-compra').click()
-    cy.wait('@aguardaCarrinho').its('response.statusCode').should('eq',204)//quebra 200
+    cy.wait('@aguardaCarrinho').its('response.statusCode').should('eq',200)
   })
 
 })
