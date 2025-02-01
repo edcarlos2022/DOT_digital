@@ -18,15 +18,15 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
-      - name: Instalar Firefox
-        run: sudo apt-get update && sudo apt-get install -y firefox
-
       - name: Instalar Xvfb
         run: sudo apt-get install -y xvfb
+
+      - name: Instalar Firefox (caso deseje usar)
+        run: sudo apt-get install -y firefox
 
       - name: Definir variável de ambiente TERM
         run: echo "TERM=xterm" >> $GITHUB_ENV
 
-      - name: Executar Cypress com Xvfb
+      - name: Executar Cypress com Xvfb no Chrome (caso o Firefox tenha problemas)
         run: |
-          xvfb-run --server-args='-screen 0 1280x1024x24' npx cypress run --headless --browser firefox --spec 'cypress/e2e/**/*.cy.js'
+          xvfb-run --server-args='-screen 0 1280x1024x24' npx cypress run --headless --browser chrome --spec 'cypress/e2e/**/*.cy.js'
