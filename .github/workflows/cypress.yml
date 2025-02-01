@@ -18,5 +18,8 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
+      - name: Definir variável de ambiente TERM
+        run: echo "TERM=xterm" >> $GITHUB_ENV
+
       - name: Executar testes Cypress
         run: npx cypress run --headless --spec 'cypress/e2e/**/*.cy.js'
