@@ -21,5 +21,5 @@ jobs:
       - name: Definir variável de ambiente TERM
         run: echo "TERM=xterm" >> $GITHUB_ENV
 
-      - name: Executar testes Cypress
-        run: npx cypress run --headless --spec 'cypress/e2e/**/*.cy.js'
+      - name: Executar testes Cypress no Firefox
+        run: npx cypress run --headless --browser firefox --spec 'cypress/e2e/**/*.cy.js'
